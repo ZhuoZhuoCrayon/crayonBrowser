@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="771.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controller.DemoController">
+    <stylesheets>
+        <URL value="@/resources/css/demo.css" />
+    </stylesheets>
+    <children>
+        <MenuBar layoutX="7.0" layoutY="14.0" prefHeight="38.0" prefWidth="771.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <CheckMenuItem fx:id="checkDown" mnemonicParsing="false" onAction="#showDownload" text="显示下载" />
+                        <CheckMenuItem fx:id="bookmarkMenu" mnemonicParsing="false" onAction="#showBookmark" text="显示书签栏" />
+                        <MenuItem mnemonicParsing="false" onAction="#closeAction" text="退出" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showSetting" text="设置" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem fx:id="about" mnemonicParsing="false" onAction="#showAbout" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TabPane fx:id="tabPane" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+        <HBox fx:id="bookmarkBox" layoutY="94.0" prefHeight="30.0" prefWidth="771.0" spacing="10.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.0">
+            <padding>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+            </padding>
+        </HBox>
+        <Button fx:id="addTabBtn" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" text="+" visible="false" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="30.0">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="bookmark" />
+         </styleClass></Button>
+        <AnchorPane fx:id="bookmarkPane" layoutY="89.0" prefHeight="139.0" prefWidth="344.0" styleClass="inner_pane" visible="false" AnchorPane.topAnchor="89.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="2.0" prefHeight="30.0" prefWidth="342.0" text="书签管理" textAlignment="CENTER" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="6.0" layoutY="34.0" text="名称" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="34.0" />
+                <Label layoutX="6.0" layoutY="69.0" text="地址" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="69.0" />
+                <TextField fx:id="bookmarkName" layoutX="40.0" layoutY="34.0" prefHeight="23.0" prefWidth="299.0" AnchorPane.topAnchor="34.0" />
+                <TextField fx:id="bookmarkAddress" layoutX="40.0" layoutY="69.0" prefHeight="23.0" prefWidth="299.0" AnchorPane.topAnchor="69.0" />
+                <Button layoutX="145.0" layoutY="104.0" mnemonicParsing="false" onAction="#saveBookmark" text="保存" AnchorPane.topAnchor="104.0" />
+                <Button layoutX="284.0" layoutY="3.0" mnemonicParsing="false" onAction="#hideBookmark" text="X" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+
+      <AnchorPane fx:id="downloadPane" layoutX="10.0" layoutY="99.0" prefHeight="174.0" prefWidth="344.0" styleClass="inner_pane" visible="false">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="2.0" prefHeight="30.0" prefWidth="342.0" text="下载管理" textAlignment="CENTER" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="104.0" prefHeight="30.0" prefWidth="60.0" text="源地址" />
+            <Label layoutX="14.0" layoutY="36.0" prefWidth="50.0" text=" 保存名" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="35.0" />
+            <Label layoutX="6.0" layoutY="69.0" text="保存位置" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="69.0" />
+            <TextField fx:id="file_name" layoutX="74.0" layoutY="36.0" prefHeight="30.0" prefWidth="265.0" AnchorPane.topAnchor="35.0" />
+            <TextField fx:id="save_path" layoutX="74.0" layoutY="71.0" prefHeight="30.0" prefWidth="265.0" AnchorPane.topAnchor="70.0" />
+            <TextField fx:id="source_path" layoutX="77.0" layoutY="105.0" prefHeight="30.0" prefWidth="265.0" />
+            <Button layoutX="135.0" layoutY="140.0" mnemonicParsing="false" onAction="#download_start" prefHeight="38.0" prefWidth="77.0" text="下载" AnchorPane.topAnchor="139.0" />
+            <Button layoutX="284.0" layoutY="3.0" mnemonicParsing="false" onAction="#hideDownloadPane" text="关闭" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="downloadContent" layoutX="20.0" layoutY="37.0" prefHeight="500.0" prefWidth="344.0" styleClass="inner_pane" visible="false">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="3.0" prefHeight="51.0" prefWidth="340.0" text="下载内容" textAlignment="CENTER" textFill="#002106e8" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <ScrollPane layoutY="50.0" prefHeight="450.0" prefWidth="344.0">
+               <content>
+                  <VBox fx:id="downloadBox" prefHeight="432.0" prefWidth="344.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="emailPane" layoutX="142.0" layoutY="78.0" prefHeight="432.0" prefWidth="355.0" visible="false">
+         <children>
+            <TabPane prefHeight="432.0" prefWidth="355.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="sendTab" text="发送邮件">
+                     <content>
+                        <AnchorPane fx:id="sendMailPane" prefHeight="393.0" prefWidth="349.0" styleClass="inner_pane">
+                           <children>
+                              <Label layoutX="8.0" layoutY="137.0" prefHeight="38.0" prefWidth="63.0" text="文件附件" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="2.0" prefHeight="30.0" prefWidth="342.0" text="发送邮件" textAlignment="CENTER" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="8.0" layoutY="104.0" prefHeight="30.0" prefWidth="63.0" text="图片附件" />
+                              <Label layoutX="8.0" layoutY="41.0" prefWidth="50.0" text=" 接收人" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="41.0" />
+                              <Label layoutX="15.0" layoutY="76.0" prefHeight="20.0" prefWidth="50.0" text="主题" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="76.0" />
+                              <TextField fx:id="To" layoutX="74.0" layoutY="36.0" prefHeight="30.0" prefWidth="265.0" text="收件人邮箱" AnchorPane.topAnchor="35.0" />
+                              <TextField fx:id="Title" layoutX="74.0" layoutY="71.0" prefHeight="30.0" prefWidth="265.0" AnchorPane.topAnchor="70.0" />
+                              <TextField fx:id="attachPic" layoutX="74.0" layoutY="104.0" prefHeight="30.0" prefWidth="265.0" text="null" />
+                              <TextField fx:id="attachFile" layoutX="74.0" layoutY="141.0" prefHeight="30.0" prefWidth="265.0" text="null" />
+                              <Button fx:id="send" layoutX="76.0" layoutY="355.0" mnemonicParsing="false" onAction="#send_email" prefHeight="38.0" prefWidth="77.0" text="发送" AnchorPane.topAnchor="354.0" />
+                              <Button fx:id="close" layoutX="179.0" layoutY="355.0" mnemonicParsing="false" onAction="#hideMailPane" prefHeight="38.0" prefWidth="77.0" text="取消" />
+                              <Label layoutX="142.0" layoutY="175.0" prefHeight="30.0" prefWidth="63.0" text="邮件正文" />
+                              <TextArea fx:id="Text" layoutX="18.0" layoutY="204.0" prefHeight="148.0" prefWidth="322.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+                <Tab text="已发送">
+                     <content>
+                        <AnchorPane prefHeight="500.0" prefWidth="344.0" styleClass="inner_pane">
+                           <children>
+                              <ScrollPane layoutY="54.0" prefHeight="339.0" prefWidth="355.0">
+                                 <content>
+                                    <VBox fx:id="email_list" prefHeight="462.0" prefWidth="335.0" />
+                                 </content>
+                              </ScrollPane>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="3.0" prefHeight="51.0" prefWidth="340.0" text="已发送邮件" textAlignment="CENTER" textFill="#002106e8" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content></Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+        
+    </children>
+</AnchorPane>
